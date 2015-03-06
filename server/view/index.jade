@@ -1,0 +1,15 @@
+extends includes/layout
+block content
+    section#nameform.modal
+        div.backdrop
+        div.popup
+            div.pophead Please enter a nickname
+            div.popbody
+                input#nickname(type='text')
+                input#setUserlogin(type='button', value='Set Name')
+    section#chatroom
+        div#chatMessage
+            div#messages
+            input#message(type='text', placeholder='Enter your message here')
+            input#sendMessage(type='button', value='Send')
+        div#participants     testy

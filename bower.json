@@ -1,0 +1,21 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "authors": [
+    "nikolay.torbev <ntorbev@gmail.com>"
+  ],
+  "description": "chat application with express mongoose angular etc.",
+  "main": "server.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./public/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3"
+  }
+}
