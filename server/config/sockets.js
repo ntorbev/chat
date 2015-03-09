@@ -2,20 +2,19 @@
 exports.initialize = function(server) {
     var participants = [];
 
-    io = require('socket.io')(server);
+    io = require('socket.io').listen(server);
 
-    io.on("connection", function(socket){
+    io.sockets.on("connection", function(socket){
+
         socket.on("newUser", function(data) {
             participants.push({id: data.id, name: data.name});
-            socket.emit("newUser", {participants: participants});
+            io.sockets.emit("newUser", {participants: participants});
         });
 
         socket.on('newMessage', function(data){
-            socket.broadcast.emit('set Message', {
+            socket.broadcast.emit('setMessage', {
                 message:data.message,
-                user:data.user
-            });
-
+                user:data.user});
         });
     });
 };

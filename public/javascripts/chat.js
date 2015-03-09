@@ -32,6 +32,7 @@ $(function() {
             message: $('#message').val(),
             user:user
         };
+
         $('#message').val('');
         $('#messages').append(
                 '<div class="' + data.id +'"><span class="name">' + data.user + ":</span> " + data.message + '</div>');
@@ -39,9 +40,9 @@ $(function() {
         socket.emit('newMessage', data);
     });
 
-   socket.on('set Message', function(data){
+   socket.on('setMessage', function(data){
        $('#messages').append(
-               '<div class="' + data.user +'"><span class="name">' + data.user + ":</span> " + data.message + '</div>');
+               '<div class="' + data.user +'"><span class=data.user>' + data.user + ":</span> " + data.message + '</div>');
    });
 
 });
