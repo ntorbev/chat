@@ -2,9 +2,9 @@
 exports.initialize = function(server) {
     var participants = [];
 
-    io = require('socket.io').listen(server);
+    io = require('socket.io')(server);
 
-    io.sockets.on("connection", function(socket){
+    io.on("connection", function(socket){
 
         socket.on("newUser", function(data) {
             participants.push({id: data.id, name: data.name});
@@ -14,7 +14,8 @@ exports.initialize = function(server) {
         socket.on('newMessage', function(data){
             socket.broadcast.emit('setMessage', {
                 message:data.message,
-                user:data.user});
+                user:data.user
+            });
         });
     });
 };

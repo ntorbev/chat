@@ -6,7 +6,7 @@ $(function() {
     var user,
         sessionId;
 
-    $('#setUserlogin').unbind("click").click(function(data) {
+    $('#setUserlogin').click(function(data) {
         $('#nameform').hide();
         $('#chatroom').show();
 
@@ -26,7 +26,7 @@ $(function() {
         }
     });
 
-    $('#sendMessage').unbind("click").click(function () {
+    $('#sendMessage').click(function () {
         var data = {
             id : sessionId,
             message: $('#message').val(),
