@@ -2,9 +2,14 @@ $(function() {
     "use strict";
 
     var socket = io().connect('http://localhost:8080');//document.domain
-    var $window = $(window);
+//    var $window = $(window);
     var user,
         sessionId;
+
+    $('#nickname').keypress(function(e){
+        if (e.keyCode==13 && $('#nickname').val()!='')
+            $('#setUserlogin').trigger("click")
+    });
 
     $('#setUserlogin').click(function(data) {
         $('#nameform').hide();
@@ -24,6 +29,11 @@ $(function() {
             $('#participants').append('<span id="' + participants[i].id + '">' +
                 participants[i].name + ' ' + (participants[i].id === sessionId ? '(You)' : '') + '<br /></span>');
         }
+    });
+
+    $('#message').keypress(function(e){
+        if(e.keyCode==13 && $('#message').val()!='')
+            $('#sendMessage').trigger('click')
     });
 
     $('#sendMessage').click(function () {
