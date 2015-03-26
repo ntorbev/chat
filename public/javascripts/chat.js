@@ -4,7 +4,8 @@ $(function() {
     var socket = io().connect('http://localhost:8080');//document.domain
 //    var $window = $(window);
     var user,
-        sessionId;
+        sessionId,
+        participants=[];
 
     $('#nickname').keypress(function(e){
         if (e.keyCode==13 && $('#nickname').val()!='')
@@ -22,7 +23,7 @@ $(function() {
     });
 
     socket.on('newUser', function (data) {
-        var participants = data.participants;
+        participants = data.participants;
 
         $('#participants').html('');
         for (var i = 0; i < participants.length; i++) {
@@ -54,5 +55,19 @@ $(function() {
        $('#messages').append(
                '<div class="' + data.user +'"><span class=data.user>' + data.user + ":</span> " + data.message + '</div>');
    });
+
+    socket.on('disconnect', function () {
+        // remove the username from global usernames list
+        if (addedUser) {
+            delete usernames[socket.username];
+            --numUsers;
+
+            // echo globally that this client has left
+            socket.broadcast.emit('user left', {
+                username: socket.username,
+                numUsers: numUsers
+            });
+        }
+    });
 
 });
