@@ -1,8 +1,11 @@
 var app = require('express')(),
+    env = process.env.NODE_ENV || 'development',
+    config = require('./server/config/config')[env],
     server = require('http').createServer(app);
 
 require('./server/config/express')(app);
-
+require('./server/config/mongoose')(config);
+require('./server/config/passport')();
 require('./server/config/route')(app);
 
 server.listen(app.get('port'), function(){

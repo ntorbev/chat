@@ -1,0 +1,17 @@
+div#loginModal.modal.show(tabindex=-1 role=dialog aria-hidden=true)
+    div.modal-dialog
+    div.modal-content
+        div.modal-header
+            button.close(type="button"  data-dismiss="modal" aria-hidden="true")
+            h1.text-center(ng-click="login(user)") Login
+        div.modal-body
+            form.form.col-md-12.center-block
+                div.form-group
+                    input.form-control.input-lg(type="text"  placeholder="Username" ng-model="user.username")
+                div.form-group
+                    input.form-control.input-lg(type="password" placeholder="Password" ng-model="user.password")
+                div.form-group
+                    button.btn.btn-primary.btn-lg.btn-block(ng-click="login(user)") Log In
+                    span.pull-right
+                        a(href="#/signup") Sign Up
+        div.modal-footer

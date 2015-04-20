@@ -2,13 +2,13 @@ doctype html
 html
     block head
         title= title
-        link(rel='stylesheet', href='/css/site.css')
         link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.css")
-        script(type="text/javascript" src="/lib/jquery/dist/jquery.js")
-        script(type='text/javascript', src='/socket.io/socket.io.js')
-        script(type='text/javascript', src='/javascripts/chat.js')
-    body
+        link(rel="stylesheet" href="/lib/toastr/toastr.css")
+        link(rel='stylesheet', href='/css/site.css')
+    body(ng-app="app")
         header#banner
         //h1 Awesome Chat
         block content
         //footer Hope you enjoy your stay here
+
+        include scripts
