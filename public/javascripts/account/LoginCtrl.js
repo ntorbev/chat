@@ -2,6 +2,9 @@
 
 app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth,$rootScope) {
     $scope.identity = identity;
+    if(identity.currentUser){
+        $location.path('/chat/mainChatRoom');
+    }
     $scope.login = function(user) {
         auth.login(user).then(function(success) {
             if (success) {
@@ -10,7 +13,6 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
                 var socket = io().connect('http://localhost:8080');
                 $rootScope.sessionId = socket.io.engine.id;
                 $rootScope.username = user.username;
-//                $('#messages').append('<div class="systemMessage">' + 'Hello ' + user  + '</div>');
                 socket.emit('newUser', {id: $rootScope.sessionId, name: user.username});
 
 

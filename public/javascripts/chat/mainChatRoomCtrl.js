@@ -16,6 +16,16 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope) {
         socket.emit('newMessage', data);
     });
 
+    socket.on('newUser', function (data) {
+        participants = data.participants;
+
+        $('#participants').html('');
+        for (var i = 0; i < participants.length; i++) {
+            $('#participants').append('<span id="' + participants[i].id + '">' +
+                participants[i].name + ' ' + (participants[i].id === socket.id ? '(You)' : '') + '<br /></span>');
+        }
+    });
+
     socket.on('setMessage', function(data){
         $('#messages').append(
             '<div class="' + data.user +'"><span>' + data.user + ":</span> " + data.message + '</div>');

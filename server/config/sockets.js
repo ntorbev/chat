@@ -1,13 +1,10 @@
-
 exports.initialize = function(server) {
     var participants = [];
-
     io = require('socket.io')(server);
 
     io.on("connection", function(socket){
-
         socket.on("newUser", function(data) {
-            participants.push({id: data.id, name: data.name});
+            participants.push({id: socket.id, name: data.name});
             io.sockets.emit("newUser", {participants: participants});
         });
 

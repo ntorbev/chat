@@ -1,7 +1,6 @@
 $(function() {
     "use strict";
-
-    var socket = io().connect('http://localhost:8080');//document.domain
+    var socket = io('http://localhost:8080');//document.domain
 //    var $window = $(window);
     var user,
         sessionId,
