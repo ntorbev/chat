@@ -11,11 +11,7 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
                 notifier.success('Successful login!');
 
                 var socket = io().connect('http://localhost:8080');
-                $rootScope.sessionId = socket.io.engine.id;
-                $rootScope.username = user.username;
-                socket.emit('newUser', {id: $rootScope.sessionId, name: user.username});
-
-
+                socket.emit('newUser', {name: user.username});
                 $location.path('/chat/mainChatRoom');
             }
             else {
