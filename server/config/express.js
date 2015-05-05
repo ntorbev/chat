@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.use(favicon(__dirname + '../../../public/img/wendy-favicon.png'));
     app.use(cookieParser());
     app.use(bodyParser.json());
-    app.use(session({secret: 'magic unicorns'}));
+    app.use(session({ secret: 'privacy', resave: true, saveUninitialized: true}));
     app.use(logger('dev'));
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(passport.initialize());
