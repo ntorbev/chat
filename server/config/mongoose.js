@@ -10,8 +10,6 @@ module.exports = function(config) {
             console.log('Database could not be opened: ' + err);
             return;
         }
-
-        console.log('Database up and running...')
     });
 
     db.on('error', function(err){
