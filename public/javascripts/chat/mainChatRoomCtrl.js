@@ -1,6 +1,6 @@
 app.controller('mainChatRoomCtrl', function($scope, $rootScope) {
     $scope.menuOptions = [
-        ['update', function ($itemScope) {
+        ['Update', function ($itemScope) {
 //            $scope.player.gold -= $itemScope.item.cost;
         }],
         null,

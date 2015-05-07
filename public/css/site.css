@@ -25,6 +25,7 @@ section#chatroom {
   width: 45%;
   text-align: right;
   padding-right: 5px;
+  width: 200px;
 }
 div#messages {
   height: -moz-calc(100% - 35px);
