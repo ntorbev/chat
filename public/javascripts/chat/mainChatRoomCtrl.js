@@ -1,11 +1,18 @@
-app.controller('mainChatRoomCtrl', function($scope, $rootScope) {
+app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth, notifier) {
     $scope.menuOptions = [
         ['Update', function ($itemScope) {
 //            $scope.player.gold -= $itemScope.item.cost;
         }],
         null,
         ['Log Out', function ($itemScope) {
-//            $scope.player.gold += $itemScope.item.cost;
+            auth.logout().then(function() {
+                notifier.success('Successful logout!');
+                if ($scope.user) {
+                    $scope.user.username = '';
+                    $scope.user.password = '';
+                }
+                $location.path('/');
+            })
         }]
     ];
 
