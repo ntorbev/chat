@@ -1,8 +1,6 @@
 app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth, notifier) {
     $scope.menuOptions = [
-        ['Update', function ($itemScope) {
-//            $scope.player.gold -= $itemScope.item.cost;
-        }],
+        ['Update', function ($itemScope) {}],
         null,
         ['Log Out', function ($itemScope) {
             auth.logout().then(function() {
@@ -11,7 +9,9 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
                     $scope.user.username = '';
                     $scope.user.password = '';
                 }
+
                 $location.path('/');
+                socket.disconnect();
             })
         }]
     ];
@@ -51,6 +51,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
     function renderParticipants(participants){
         $('#participants').html('');
+        $scope.socketId=socket.id;
         for (var i in participants){
             $('#participants').append('<a class="list-group-item"  id="' + participants[i].id + '">' +
                 participants[i].name + ' ' + (participants[i].id === socket.id ? '(You)' : '') + '<br /></a>');

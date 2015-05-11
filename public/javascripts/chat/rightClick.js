@@ -16,21 +16,25 @@ app.directive('ngContextMenu', function ($parse) {
             top: event.pageY + 'px'
         });
         angular.forEach(options, function (item, i) {
-            var __li = $('<li>');
-            if (item === null) {
-                __li.addClass('divider');
-            } else {
-                var __a = $('<a>');
-                __a.attr({ tabindex: '-1', href: '#' });
-                __a.text(item[0]);
-                __li.append(__a);
-                __li.on('click', function () {
-                    $scope.$apply(function() {
-                        item[1].call($scope, $scope);
+            if($scope.socketId!=event.target.id && item !== null && item[0]=="Log Out") var flag=false;
+
+            if (typeof flag === 'undefined') {
+                var __li = $('<li>');
+                if (item === null) {
+                    __li.addClass('divider');
+                } else {
+                    var __a = $('<a>');
+                    __a.attr({ tabindex: '-1', href: '#' });
+                    __a.text(item[0]);
+                    __li.append(__a);
+                    __li.on('click', function () {
+                        $scope.$apply(function () {
+                            item[1].call($scope, $scope);
+                        });
                     });
-                });
+                }
+                __ul.append(__li);
             }
-            __ul.append(__li);
         });
         __contextMenu.append(__ul);
         __contextMenu.css({
