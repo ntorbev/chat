@@ -1,10 +1,11 @@
 exports.initialize = function(server) {
-    var participants = [];
+    var participants = {};
     io = require('socket.io')(server);
 
     io.on("connection", function(socket){
         socket.on("newUser", function(data) {
-            participants.push({id: socket.id, name: data.name});
+//            participants.push({id: socket.id, name: data.name});
+            participants[socket.id]={id: socket.id, name: data.name};
             io.sockets.emit("newUser", {participants: participants});
         });
 
@@ -13,6 +14,10 @@ exports.initialize = function(server) {
                 message:data.message,
                 user:data.user
             });
+        });
+        socket.on('disconnect', function () {
+            delete participants[socket.id]
+            io.sockets.emit('disconnected',{ id: socket.id });
         });
     });
 };

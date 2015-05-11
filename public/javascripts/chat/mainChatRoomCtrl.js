@@ -35,12 +35,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
     socket.on('newUser', function (data) {
         participants = data.participants;
-
-        $('#participants').html('');
-        for (var i = 0; i < participants.length; i++) {
-            $('#participants').append('<a class="list-group-item"  id="' + participants[i].id + '">' +
-                participants[i].name + ' ' + (participants[i].id === socket.id ? '(You)' : '') + '<br /></a>');
-        }
+        renderParticipants(participants);
     });
 
     socket.on('setMessage', function(data){
@@ -48,14 +43,17 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
             '<div class="' + data.user +'"><span>' + data.user + ":</span> " + data.message + '</div>');
     });
 
-    socket.on('disconnect', function () {
-        if (addedUser) {
-            delete usernames[socket.username];
-            --numUsers;
-            socket.broadcast.emit('user left', {
-                username: socket.username,
-                numUsers: numUsers
-            });
-        }
+    socket.on('disconnected', function (id) {
+        delete participants[id.id];
+        renderParticipants(participants);
     });
+
+
+    function renderParticipants(participants){
+        $('#participants').html('');
+        for (var i in participants){
+            $('#participants').append('<a class="list-group-item"  id="' + participants[i].id + '">' +
+                participants[i].name + ' ' + (participants[i].id === socket.id ? '(You)' : '') + '<br /></a>');
+        }
+    }
 });
