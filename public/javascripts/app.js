@@ -22,7 +22,7 @@ app.config(function($routeProvider, $locationProvider) {
             controller: 'LoginCtrl'
         })
         .when('/signup', {
-            templateUrl: '/javascripts/account/signup.html',
+            templateUrl: '/javascripts/account/profile.html',
             controller: 'SignUpCtrl'
         })
         .when('/chat/mainChatRoom', {
