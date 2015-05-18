@@ -23,8 +23,8 @@ app.directive('ngContextMenu', function ($parse) {
                 if (item === null) {
                     __li.addClass('divider');
                 } else {
-                    var __a = $('<a>');
-                    __a.attr({ tabindex: '-1', href: '#' });
+                    var __a = $('<span>');
+                    __a.attr({ tabindex: '-1' });
                     __a.text(item[0]);
                     __li.append(__a);
                     __li.on('click', function () {
