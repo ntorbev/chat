@@ -4,7 +4,6 @@ exports.initialize = function(server) {
 
     io.on("connection", function(socket){
         socket.on("newUser", function(data) {
-//            participants.push({id: socket.id, name: data.name});
             participants[socket.id]={id: socket.id, name: data.name};
             io.sockets.emit("newUser", {participants: participants});
         });
@@ -16,7 +15,7 @@ exports.initialize = function(server) {
             });
         });
         socket.on('disconnect', function () {
-            delete participants[socket.id]
+            delete participants[socket.id];
             io.sockets.emit('disconnected',{ id: socket.id });
         });
     });

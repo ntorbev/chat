@@ -1,15 +1,12 @@
-app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth, notifier) {
+app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth, notifier){
     $scope.menuOptions = [
-        ['Update', function ($itemScope) {}],
+        ['Update', function () {
+            $location.path('/signup');
+        }],
         null,
-        ['Log Out', function ($itemScope) {
-            auth.logout().then(function() {
+        ['Log Out', function () {
+            auth.logout().then(function(user) {
                 notifier.success('Successful logout!');
-                if ($scope.user) {
-                    $scope.user.username = '';
-                    $scope.user.password = '';
-                }
-
                 $location.path('/');
                 socket.disconnect();
             })
@@ -17,7 +14,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
     ];
 
     var socket = io().connect('http://localhost:8080'),
-        participants=[];
+        participants = {};
 
     $('#MessageBtn').click(function () {
         var data = {
@@ -47,7 +44,6 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         delete participants[id.id];
         renderParticipants(participants);
     });
-
 
     function renderParticipants(participants){
         $('#participants').html('');
