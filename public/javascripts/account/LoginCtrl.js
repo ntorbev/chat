@@ -1,10 +1,12 @@
 'use strict';
 
-app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth,$rootScope) {
+app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth) {
     $scope.identity = identity;
+
     if(identity.currentUser){
         $location.path('/chat/mainChatRoom');
     }
+
     $scope.login = function(user) {
         auth.login(user).then(function(success) {
             if (success) {
@@ -19,15 +21,4 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
             }
         });
     };
-
-    $scope.logout = function() {
-        auth.logout().then(function() {
-            notifier.success('Successful logout!');
-            if ($scope.user) {
-                $scope.user.username = '';
-                $scope.user.password = '';
-            }
-            $location.path('/');
-        })
-    }
 });
