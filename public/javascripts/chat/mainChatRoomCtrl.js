@@ -18,9 +18,8 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
     $('#MessageBtn').click(function () {
         var data = {
-            id :  $rootScope.sessionId,
             message: $('#messageInput').val(),
-            user:$rootScope.username
+            user:participants[socket.id].name
         };
 
         $('#messageInput').val('');
