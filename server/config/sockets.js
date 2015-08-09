@@ -1,10 +1,29 @@
-exports.initialize = function(server) {
-    var participants = {};
-    io = require('socket.io')(server);
+exports.initialize = function( server,  Session, sessionStore ) {
+    var participants = {},
+        io = require('socket.io')(server),
+        cookieParser = require('socket.io-cookie-parser');
 
+    io.use(cookieParser());
+    io.use(function(socket, next) {
+        socket.cookie = socket.request.cookies;
+        socket.sessionID = socket.request.cookies['express.sid'].split(".")[0].split(':')[1];
+        socket.sessionStore = sessionStore;
+        sessionStore.get(socket.sessionID, function (err, session) {
+            socket.session = new Session(socket, session);
+        });
+        participants[socket.id]={
+            socketId: socket.id,
+            userName: socket.request.cookies.username,
+            sessionId:socket.sessionID,
+            leftRoom:false
+        };
+        socket.emit("newUser", {participants: participants});
+        io.sockets.emit("newUser", {participants: participants});
+
+        next();
+    });
     io.on("connection", function(socket){
         socket.on("newUser", function(data) {
-            participants[socket.id]={id: socket.id, name: data.name};
             io.sockets.emit("newUser", {participants: participants});
         });
 

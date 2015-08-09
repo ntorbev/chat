@@ -19,6 +19,7 @@
     "passport": "^0.2.1",
     "passport-local": "^1.0.0",
     "mongoose": "^4.0.1",
-    "express-session": "^1.11.1"
+    "express-session": "^1.11.1",
+    "socket.io-cookie-parser": "^1.0.0"
   }
 }

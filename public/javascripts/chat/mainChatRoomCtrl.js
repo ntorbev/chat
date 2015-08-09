@@ -19,7 +19,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
     $('#MessageBtn').click(function () {
         var data = {
             message: $('#messageInput').val(),
-            user:participants[socket.id].name
+            user:participants[socket.id].userName
         };
 
         $('#messageInput').val('');
@@ -48,8 +48,8 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         $('#participants').html('');
         $scope.socketId=socket.id;
         for (var i in participants){
-            $('#participants').append('<a class="list-group-item"  id="' + participants[i].id + '">' +
-                participants[i].name + ' ' + (participants[i].id === socket.id ? '(You)' : '') + '<br /></a>');
+            $('#participants').append('<a class="list-group-item"  id="' + participants[i].socketId + '">' +
+                participants[i].userName + ' ' + (participants[i].socketId === socket.id ? '(You)' : '') + '<br /></a>');
         }
     }
 });

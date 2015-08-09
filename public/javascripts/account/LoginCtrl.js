@@ -11,10 +11,8 @@ app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth
         auth.login(user).then(function(success) {
             if (success) {
                 notifier.success('Successful login!');
-
-                var socket = io().connect('http://localhost:8080');
-                socket.emit('newUser', {name: user.username});
                 $location.path('/chat/mainChatRoom');
+                var socket = io().connect('http://localhost:8080');
             }
             else {
                 notifier.error('Username/Password combination is not valid!');

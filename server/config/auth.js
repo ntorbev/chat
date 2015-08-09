@@ -8,6 +8,7 @@ module.exports = {
 
             req.logIn(user, function(err) {
                 if (err) return next(err);
+                res.cookie('username', user.username);
                 res.send({success: true, user: user});
             })
         })(req, res, next);
