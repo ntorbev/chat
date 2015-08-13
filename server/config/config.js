@@ -4,7 +4,7 @@ var path = require('path'),
 module.exports = {
     development: {
         rootPath: rootPath,
-        db: 'mongodb://localhost/telerikacademycourses',
+        db: 'mongodb://localhost/chat',
         port: process.env.PORT || 3030
     },
     production: {

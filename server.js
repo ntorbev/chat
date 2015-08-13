@@ -5,7 +5,6 @@ var app = require('express')(),
     Session = require('express-session'),
     sessionStore = new Session.MemoryStore();
 
-reload(server, app);
 require('./server/config/express')(app,Session,sessionStore);
 require('./server/config/mongoose')(config);
 require('./server/config/passport')();

@@ -1,11 +1,14 @@
-app.factory('auth', function($http, $q, identity, UsersResource) {
+app.factory('auth', function($http, $q, identity, $cookies, UsersResource) {
     return {
         signup: function(user) {
             var deferred = $q.defer();
 
             var user = new UsersResource(user);
             user.$save().then(function() {
+                debugger;
+                $cookies.put('username',user.username)
                 identity.currentUser = user;
+
                 deferred.resolve();
             }, function(response) {
                 deferred.reject(response);
