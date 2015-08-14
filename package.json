@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Realtime node.js chat with socket.io",
   "main": "server.js",
+   "engines":{
+       "node":"0.10.x",
+       "npm":"1.4.x"
+   },
   "author": "Nikolay Torbev",
   "license": "MIT",
   "dependencies": {
