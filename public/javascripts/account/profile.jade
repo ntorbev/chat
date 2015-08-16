@@ -20,7 +20,8 @@
                     .col-md-10
                         input.form-control(type="password", placeholder="Password", ng-model="user.password", required)
                 .pull-right
-                    button.btn.btn-primary(ng-click="signup(user)",ng-hide="identity.isAuthenticated()", ng-disabled="signUpForm.$invalid") Create
-                    button.btn.btn-primary(ng-show="identity.isAuthenticated()", ng-click="update(user)") update
-                    a.btn.btn-primary(href="#/") Cancel
+                    button.btn.btn-primary(ng-click="signup(user)",
+                    ng-hide="identity.isAuthenticated()", ng-disabled="signUpForm.$invalid") Create
+                    button.btn.btn-primary(ng-show="identity.isAuthenticated()", ng-click="cancel(user)") update
+                    a.btn.btn-primary(href="#/chat/mainChatRoom",ng-click="cancel(user)") Cancel
 
