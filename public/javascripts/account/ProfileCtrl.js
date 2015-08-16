@@ -22,7 +22,10 @@ app.controller('profileCtrl', function($scope, $location, auth, notifier, identi
         });
     };
     $scope.cancel=function(user){
-        var socket = io().connect('http://localhost:8080');
-        socket.emit('newUser',{user:user.username});
+        if(user){
+            var socket = io().connect('http://localhost:8080');
+            socket.emit('newUser',{user:user.username});
+            $location.path('/chat/mainChatRoom');
+        }
     }
 });
