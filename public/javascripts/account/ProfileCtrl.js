@@ -1,4 +1,4 @@
-app.controller('SignUpCtrl', function($scope, $location, auth, notifier, identity) {
+app.controller('profileCtrl', function($scope, $location, auth, notifier, identity) {
     $scope.identity = identity;
 
     if(identity.currentUser){
