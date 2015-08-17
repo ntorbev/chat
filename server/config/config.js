@@ -9,7 +9,7 @@ module.exports = {
     },
     production: {
         rootPath: rootPath,
-        db: 'mongodb://admin:dsadsadsadsadsadsadsaewerwewtewfdfsgfsdfdsfefdsgfdhtrytett@ds027328.mongolab.com:27328/telerikacademycourses',
+        db: 'mongodb://admin:admin131619@ds043329.mongolab.com:43329/chat',
         port: process.env.PORT || 3030
     }
 };
