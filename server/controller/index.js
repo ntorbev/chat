@@ -2,7 +2,7 @@
 //    res.render('index', { title: 'Free Chat - demo' });
 //};
 
-var usersController = require('../controller/usersController');
+var usersController = require('../controller/UsersController');
 //var coursesController = require('../controllers/coursesController');
 
 module.exports = {
