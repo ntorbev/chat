@@ -1,1 +1,1 @@
-web: node-debug -p 9000 server.js 8080
+web: node server.js
