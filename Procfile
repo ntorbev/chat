@@ -1,1 +1,1 @@
-web: node --debug=3000 server.js
+web: node-debug -p 9000 server.js 8080
