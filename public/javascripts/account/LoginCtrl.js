@@ -1,4 +1,4 @@
-'use strict';
+
 
 app.controller('LoginCtrl', function($scope, $location, notifier, identity, auth) {
     $scope.identity = identity;
