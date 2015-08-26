@@ -5,7 +5,6 @@ app.factory('auth', function($http, $q, identity, $cookies, UsersResource) {
 
             var user = new UsersResource(user);
             user.$save().then(function() {
-                debugger;
                 $cookies.put('username',user.username)
                 identity.currentUser = user;
 
