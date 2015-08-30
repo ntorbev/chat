@@ -16,7 +16,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
     var socket = io().connect('http://localhost:8080'),
         participants = {};
 
-    $('#MessageBtn').click(function () {
+    $('#sendBtn').click(function () {
         var data = {
             message: $('#messageInput').val(),
             user:participants[socket.id].userName
@@ -25,6 +25,9 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         $('#messageInput').val('');
         $('#messages').append(
             '<div class="' + data.id +'"><span class="name">' + data.user + ":</span> " + data.message + '</div>');
+
+        messageScroll=$($('#messages'));
+        messageScroll.scrollTop(messageScroll.height());
 
         socket.emit('newMessage', data);
     });
