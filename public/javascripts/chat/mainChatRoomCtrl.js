@@ -31,7 +31,9 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
         socket.emit('newMessage', data);
     });
-
+    $scope.leftClick=function($event){
+        angular.element('#participants a').trigger('contextmenu', $event)
+    };
     socket.on('newUser', function (data) {
         participants = data.participants;
         renderParticipants(participants);
@@ -51,7 +53,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         $('#participants').html('');
         $scope.socketId=socket.id;
         for (var i in participants){
-            $('#participants').append('<a class="list-group-item"  id="' + participants[i].socketId + '">' +
+            $('#participants').append('<a class="list-group-item ' + participants[i].socketId + '">' + '<img src="/img/Left Arrow _Black.png" class="arrow '+ participants[i].socketId + '">'+
                 participants[i].userName + ' ' + (participants[i].socketId === socket.id ? '(You)' : '') + '<br /></a>');
         }
     }

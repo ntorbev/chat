@@ -3,4 +3,4 @@ section#chatroom
             div#messages
             input#messageInput(type='text', placeholder='Enter your message here')
             input#sendBtn(type='button', value='Send')
-        div#participants(ng-context-menu="menuOptions")
+        div#participants(ng-context-menu="menuOptions", ng-click="leftClick($event)")

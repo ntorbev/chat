@@ -16,7 +16,7 @@ app.directive('ngContextMenu', function ($parse) {
             top: event.pageY + 'px'
         });
         angular.forEach(options, function (item, i) {
-            if($scope.socketId!=event.target.id && item !== null && item[0]=="Log Out") var flag=false;
+            if($scope.socketId != event.target.classList[1] && item !== null && item[0]=="Log Out") var flag=false;
 
             if (typeof flag === 'undefined') {
                 var __li = $('<li>');
@@ -56,11 +56,10 @@ app.directive('ngContextMenu', function ($parse) {
         });
     };
     return function ($scope, element, attrs) {
-        element.on('contextmenu', function (event) {
-            $scope.$apply(function () {
+        element.on('contextmenu', function ($event, event) {
+                event = (typeof event != 'undefined') ? event : $event;
                 event.preventDefault();
-                renderContextMenu($scope, event, $scope.$eval(attrs.ngContextMenu))
-            });
+                renderContextMenu($scope, event, $scope.$eval(attrs.ngContextMenu));
         });
     };
 });
