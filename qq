@@ -1,0 +1,19 @@
+[1mdiff --git a/public/javascripts/chat/rightClick.js b/public/javascripts/chat/rightClick.js[m
+[1mindex bac0933..031d172 100644[m
+[1m--- a/public/javascripts/chat/rightClick.js[m
+[1m+++ b/public/javascripts/chat/rightClick.js[m
+[36m@@ -56,11 +56,9 @@[m [mapp.directive('ngContextMenu', function ($parse) {[m
+         });[m
+     };[m
+     return function ($scope, element, attrs) {[m
+[31m-        element.on('contextmenu', function (event) {[m
+[31m-            $scope.$apply(function () {[m
+[32m+[m[32m        element.on('contextmenu', function ($event, event) {[m
+                 event.preventDefault();[m
+[31m-                renderContextMenu($scope, event, $scope.$eval(attrs.ngContextMenu))[m
+[31m-            });[m
+[32m+[m[32m                renderContextMenu($scope, (typeof event != 'undefined') ? event : $event, $scope.$eval(attrs.ngContextMenu));[m
+         });[m
+     };[m
+ });[m
+\ No newline at end of file[m
