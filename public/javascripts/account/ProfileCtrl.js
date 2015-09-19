@@ -6,7 +6,8 @@ app.controller('profileCtrl', function($scope, $location, auth, notifier, identi
             firstName:identity.currentUser.firstName,
             lastName:identity.currentUser.lastName,
             username:identity.currentUser.username,
-            password:identity.currentUser.password
+            password:identity.currentUser.password,
+            update:'Update Current User'
         };
     }
 

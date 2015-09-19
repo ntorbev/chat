@@ -2,7 +2,7 @@
     .well
         form.form-horizontal(name="signUpForm")
             fieldset
-                legend Create New User
+                legend {{user.update || 'Create New User'}}
                 .form-group
                     label.col-md-2.control-label(for="first-name") First Name
                     .col-md-10
