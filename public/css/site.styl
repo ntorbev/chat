@@ -16,10 +16,10 @@ div[ng-view]
 #loginModal>div.modal-content
   background: rgba(255,255,255,0.5);
 
-
-section#chatroom
+#chatroom
   height 100%
   background-color #EFFFEC
+  padding-top 10px
 
 #chatMessage
   display inline-block
@@ -36,9 +36,15 @@ section#chatroom
   padding-right 5px
   width 200px
   vertical-align top
+  border 1px solid #000;
+  border-radius 10px
+  margin-left 5px
+  height 99%
+  padding-top 10px
 
 #participants a
   display: inline-block
+  width: 96%;
 
 #messageInput
   resize: none
@@ -54,11 +60,11 @@ section#chatroom
   padding 10px
   -moz-box-sizing border-box
   -webkit-box-sizing border-box
-  box-sizing:border-box
+  box-sizing border-box
   overflow auto
-  border: 1px solid #000
-  border-radius: 10px
-  margin-bottom: 5px;
+  border 1px solid #000
+  border-radius 10px
+  margin-bottom 5px
 
 #footerMessages
   border 1px solid #000
@@ -143,46 +149,52 @@ a
   vertical-align middle
 
 #register
-  position:relative;
-  width:200px;
-  color:#FFF;
-  display:block;
-  text-decoration:none;
-  margin:0 auto;
-  border-radius:5px;
-  border:solid 1px #D94E3B;
-  background:#cb3b27;
-  text-align:center;
-  padding:20px 30px;
+  position relative
+  width 200px
+  color #FFF
+  display block
+  text-decoration none
+  margin 0 auto
+  border-radius 5px
+  border solid 1px #D94E3B
+  background #cb3b27
+  text-align center
+  padding 20px 30px
 
-  -webkit-transition: all 0.1s;
-  -moz-transition: all 0.1s;
-  transition: all 0.1s;
+  -webkit-transition all 0.1s
+  -moz-transtion all 0.1s
+  transition all 0.1s
 
-  -webkit-box-shadow: 0px 9px 0px #84261a;
-  -moz-box-shadow: 0px 9px 0px #84261a;
-  box-shadow: 0px 9px 0px #84261a;
+  -webkit-box-shadow 0px 9px 0px #84261a
+  -moz-box-shadow 0px 9px 0px #84261a
+  box-shadow 0px 9px 0px #84261a
 
 #register:active
-  -webkit-box-shadow: 0px 2px 0px #84261a;
-  -moz-box-shadow: 0px 2px 0px #84261a;
-  box-shadow: 0px 2px 0px #84261a;
-  position:relative;
-  top:7px;
+  -webkit-box-shadow 0px 2px 0px #84261a
+  -moz-box-shadow 0px 2px 0px #84261a
+  box-shadow 0px 2px 0px #84261a
+  position relative
+  top 7px
 
 .popbody
   padding 10px 5px;
 
 .modal-body
-  position: relative;
-  overflow-y: auto;
-  max-height: 400px;
-  padding: 15px;
+  position relative
+  overflow-y auto
+  max-height 400px
+  padding 15px
 
 img.arrow
-  width 22px;
-  height 22px;
-  margin-right 15px;
+  width 22px
+  height 22px
+  float left
+  margin-left 10px
+
+.user
+  width 30px;
+  height 30px;
+  /*float left*/
 
 a[href="#/signup"]
   color: #041F29;
