@@ -54,7 +54,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         $scope.socketId=socket.id;
         for (var i in participants){
             $('#participants').append('<a class="list-group-item ' + participants[i].socketId + '">' + '<img src="/img/Left Arrow _Black.png" class="arrow '+ participants[i].socketId + '">'+
-                participants[i].userName + ' ' + (participants[i].socketId === socket.id ? '(You) ' : ' ') + '</a>');
+                participants[i].userName + ' ' + (participants[i].socketId === socket.id ? '(You) ' : ' ') + '<img src="/img/peopleTalk.png" class="user"></a>');
         }
     }
 });
