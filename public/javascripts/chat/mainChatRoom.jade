@@ -2,6 +2,5 @@ section#chatroom
         div#chatMessage
             div#messages
             div#footerMessages
-                textarea#messageInput(type='text', placeholder='Enter your message here')
-                input#sendBtn(type='button', value='Send')
+                textarea#messageInput(type='text', placeholder='Enter your message here', my-enter='myEnterClick()')
         div#participants(ng-context-menu="menuOptions", ng-click="leftClick($event)")

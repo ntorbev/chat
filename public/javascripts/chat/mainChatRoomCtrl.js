@@ -16,7 +16,7 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
     var socket = io().connect('http://localhost:8080'),
         participants = {};
 
-    $('#sendBtn').click(function () {
+    $scope.myEnterClick = function(){
         var data = {
             message: $('#messageInput').val(),
             user:participants[socket.id].userName
@@ -24,13 +24,13 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
         $('#messageInput').val('');
         $('#messages').append(
-            '<div class="' + data.id +'"><span class="name">' + data.user + ":</span> " + data.message + '</div>');
+                '<div class="' + data.id +'"><span class="name">' + data.user + ":</span> " + data.message + '</div>');
 
         messageScroll=$($('#messages'));
         messageScroll.scrollTop(messageScroll.height());
 
         socket.emit('newMessage', data);
-    });
+    };
     $scope.leftClick=function($event){
         angular.element('#participants a').trigger('contextmenu', $event)
     };
