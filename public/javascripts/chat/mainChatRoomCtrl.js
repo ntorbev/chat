@@ -51,10 +51,12 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
     function renderParticipants(participants){
         $('#participants').html('');
-        $scope.socketId=socket.id;
+        $scope.socketId = socket.id.replace(/\/#/i, '');
         for (var i in participants){
-            $('#participants').append('<a class="list-group-item ' + participants[i].socketId + '">' + '<img src="/img/Left Arrow _Black.png" class="arrow '+ participants[i].socketId + '">'+
-                participants[i].userName + ' ' + (participants[i].socketId.replace(/\/#/i, '') === socket.id ? '(You) ' : ' ') + '<img src="/img/peopleTalk.png" class="user"></a>');
+            $('#participants').append('<a class="list-group-item ' + $scope.socketId + '">' +
+                '<img src="/img/Left Arrow _Black.png" class="arrow '+ $scope.socketId + '">'+
+                participants[i].userName + ' ' + ($scope.socketId === socket.id ? '(You) ' : ' ') +
+                '<img src="/img/peopleTalk.png" class="user"></a>');
         }
     }
 });
