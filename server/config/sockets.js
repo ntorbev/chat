@@ -12,13 +12,13 @@ exports.initialize = function( server,  Session, sessionStore ) {
             socket.session = new Session(socket, session);
         });
         participants[socket.id]={
-            socketId: socket.id,
+            socketId: socket.id.replace(/\/#/i, ''),
             userName: socket.request.cookies.username,
             sessionId:socket.sessionID,
             leftRoom:false
         };
         socket.emit("newUser", {participants: participants});
-        io.sockets.emit("newUser", {participants: participants});
+        io.emit("newUser", {participants: participants});
 
         next();
     });

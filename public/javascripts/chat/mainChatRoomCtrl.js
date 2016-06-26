@@ -13,13 +13,12 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
         }]
     ];
 
-    var socket = io().connect('http://localhost:8080'),
-        participants = {};
+    var socket = io().connect(window.location.origin);
 
     $scope.myEnterClick = function(){
         var data = {
             message: $('#messageInput').val(),
-            user:participants[socket.id].userName
+            user:$scope.participants[socket.id].userName
         };
 
         $('#messageInput').val('');
@@ -31,12 +30,15 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
 
         socket.emit('newMessage', data);
     };
+
     $scope.leftClick=function($event){
-        angular.element('#participants a').trigger('contextmenu', $event)
+        angular.element('#participants a').trigger('contextmenu', ($event, socket.id))
     };
+
     socket.on('newUser', function (data) {
-        participants = data.participants;
-        renderParticipants(participants);
+        if( !$scope.socketId ) $scope.socketId = this.id;
+        $scope.participants = data.participants
+        renderParticipants();
     });
 
     socket.on('setMessage', function(data){
@@ -45,17 +47,18 @@ app.controller('mainChatRoomCtrl', function($scope, $rootScope, $location, auth,
     });
 
     socket.on('disconnected', function (id) {
-        delete participants[id.id];
-        renderParticipants(participants);
+        delete $scope.participants[id.id];
+        renderParticipants();
     });
 
-    function renderParticipants(participants){
+    function renderParticipants(){
+        var participants=$scope.participants;
         $('#participants').html('');
-        $scope.socketId = socket.id.replace(/\/#/i, '');
+
         for (var i in participants){
-            $('#participants').append('<a class="list-group-item ' + $scope.socketId + '">' +
-                '<img src="/img/Left Arrow _Black.png" class="arrow '+ $scope.socketId + '">'+
-                participants[i].userName + ' ' + ($scope.socketId === socket.id ? '(You) ' : ' ') +
+            $('#participants').append('<a class="list-group-item ' + socket.id + '">' +
+                '<img src="/img/Left Arrow _Black.png" class="arrow '+ socket.id + '">'+
+                participants[i].userName + ' ' + (participants[i]['socketId'] === socket.id ? '(You) ' : ' ') +
                 '<img src="/img/peopleTalk.png" class="user"></a>');
         }
     }

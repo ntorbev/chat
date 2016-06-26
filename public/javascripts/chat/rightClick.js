@@ -18,15 +18,15 @@ app.directive('ngContextMenu', function ($parse) {
         angular.forEach(options, function (item, i) {
             if($scope.socketId != event.target.classList[1] && item !== null && item[0]=="Log Out") var flag=false;
 
-            if (typeof flag === 'undefined') {
+            if (!flag) {
                 var __li = $('<li>');
                 if (item === null) {
                     __li.addClass('divider');
                 } else {
-                    var __a = $('<span>');
-                    __a.attr({ tabindex: '-1' });
-                    __a.text(item[0]);
-                    __li.append(__a);
+                    var __span = $('<span>');
+                    __span.attr({ tabindex: '-1' });
+                    __span.text(item[0]);
+                    __li.append(__span);
                     __li.on('click', function () {
                         $scope.$apply(function () {
                             item[1].call($scope, $scope);
@@ -56,10 +56,9 @@ app.directive('ngContextMenu', function ($parse) {
         });
     };
     return function ($scope, element, attrs) {
-        element.on('contextmenu', function ($event, event) {
-                event = (typeof event != 'undefined') ? event : $event;
-                event.preventDefault();
-                renderContextMenu($scope, event, $scope.$eval(attrs.ngContextMenu));
+        element.on('contextmenu', function ($event) {
+            $event.preventDefault();
+            renderContextMenu($scope, $event, $scope.$eval(attrs.ngContextMenu));
         });
     };
 });
