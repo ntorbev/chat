@@ -11,7 +11,7 @@ exports.initialize = function( server,  Session, sessionStore ) {
         sessionStore.get(socket.sessionID, function (err, session) {
             socket.session = new Session(socket, session);
         });
-        participants[socket.id]={
+        participants[socket.id.replace(/\/#/i, '')]={
             socketId: socket.id.replace(/\/#/i, ''),
             userName: socket.request.cookies.username,
             sessionId:socket.sessionID,
